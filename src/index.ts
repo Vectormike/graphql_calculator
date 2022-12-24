@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
 import { ApolloServer } from 'apollo-server-express';
-import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
+import { ApolloError, ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import { buildSchema } from 'type-graphql';
 import { Resolvers } from './resolvers/calculator.resolver';
 import Schema from './types/calculator.graphql';
@@ -19,6 +19,15 @@ export const bootstrap = async () => {
 		schema: await buildSchema({
 			resolvers: [Resolvers],
 		}),
+		formatError: (error: ApolloError) =>
+			// Modify the error object here
+			({
+				message: error.message,
+				code: error.extensions.code,
+				path: error.path,
+				locations: error.locations,
+				fields: error.extensions.exception.fields,
+			}),
 		// plugins: [ApolloServerPluginDrainHttpServer({ httpServer: http.createServer(app) })],
 		context: ({ req, res }) => ({ req, res }),
 	});
