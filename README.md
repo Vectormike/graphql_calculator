@@ -19,25 +19,20 @@ npm install
 
 ### Running the server
 
-Set the environment variables:
-
 ```
 cp .env.example .env
 
 # open .env and modify the environment variables (if needed)
-
 ```
 
+```
 npm start
-
 ```
 
 To run in development:
 
 ```
-
 npm run dev
-
 ```
 
 The server will be running at http://localhost:9000/
@@ -62,75 +57,59 @@ The API exposes the following GraphQL queries:
 ### Examples
 
 ```
-
 query {
-addition(a: 2, b: 3)
+  addition(a: 2, b: 3)
 }
-
 ```
 
 ```
-
 {
-"data": {
-"addition": 5
+  "data": {
+    "addition": 5
+  }
 }
-}
-
 ```
 
 ```
-
 query {
-subtraction(a: 5, b: 3)
+  subtraction(a: 5, b: 3)
 }
-
 ```
 
 ```
-
 {
-"data": {
-"subtraction": 2
+  "data": {
+    "subtraction": 2
+  }
 }
-}
-
 ```
 
 ```
-
 query {
-multiplication(a: 5, b: 3)
+  multiplication(a: 5, b: 3)
 }
-
 ```
 
 ```
-
 {
-"data": {
-"multiplication": 15
+  "data": {
+    "multiplication": 15
+  }
 }
-}
-
 ```
 
 ```
-
 query {
-division(a: 6, b: 3)
+  division(a: 6, b: 3)
 }
-
 ```
 
 ```
-
 {
-"data": {
-"division": 2
+  "data": {
+    "division": 2
+  }
 }
-}
-
 ```
 
 ### Testing
@@ -138,9 +117,7 @@ division(a: 6, b: 3)
 To run the tests:
 
 ```
-
 npm test
-
 ```
 
 ### Sample Query
@@ -148,4 +125,3 @@ npm test
 Below is a sample query from sandbox
 
 ![](./sample.png)
-```
