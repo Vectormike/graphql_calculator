@@ -1,7 +1,7 @@
-import { NextFunction } from 'express';
+import { MiddlewareFn } from 'type-graphql';
 import redis from '../config/redis';
 
-const rateLimiter = async (key: string, limit: number, duration: number) => async (next: NextFunction) => {
+export const rateLimiter: (key: string, limit: number, duration: number) => MiddlewareFn<unknown> = (key, limit, duration) => async (next: any) => {
 	const current = await redis.incr(key);
 	if (current === 1) {
 		await redis.expire(key, duration);
@@ -12,5 +12,3 @@ const rateLimiter = async (key: string, limit: number, duration: number) => asyn
 
 	return next();
 };
-
-export default rateLimiter;
