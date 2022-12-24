@@ -4,9 +4,9 @@
   "description": "A graphql calculator",
   "main": "index.js",
   "scripts": {
+    "build": "rimraf ./dist && tsc",
     "dev": "ts-node-dev src/index.ts",
     "start": "npm run build && node dist/index.js",
-    "build": "rimraf ./dist && tsc",
     "test": "jest --detectOpenHandles"
   },
   "keywords": [],
