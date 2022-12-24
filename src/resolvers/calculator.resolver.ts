@@ -1,4 +1,4 @@
-import { Mutation, Arg, Field, Resolver, Float, InputType, Query, UseMiddleware } from 'type-graphql';
+import { Arg, Field, Resolver, Float, InputType, Query, UseMiddleware } from 'type-graphql';
 import rateLimiter from '../middleware/rate-limiter';
 // import { assertValidName } from 'graphql';
 
@@ -39,6 +39,9 @@ export class Resolvers {
 	@Query(() => Float)
 	division(@Arg('CalculatorInputs') args: Calculator) {
 		rateLimiter('addition', 5, 60 * 1000);
+		if (args.b === 0) {
+			return null;
+		}
 		return args.a / args.b;
 	}
 }
